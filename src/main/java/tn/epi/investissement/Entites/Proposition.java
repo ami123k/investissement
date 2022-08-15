@@ -72,7 +72,7 @@ public class Proposition {
     private projet projet ;
 
     @JsonIgnore
-    @OneToMany(mappedBy="proposition",cascade={CascadeType.ALL},fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="proposition",cascade={CascadeType.ALL})
     private List<commentaire_proposition> commentaire_propositionList=new ArrayList<>() ;
 
 

@@ -46,4 +46,7 @@ public class avis {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private projet projet ;
+
+    @ManyToOne
+    private User user;
 }

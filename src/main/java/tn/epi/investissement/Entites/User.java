@@ -1,9 +1,7 @@
 package tn.epi.investissement.Entites;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -41,4 +39,7 @@ public class User {
         this.nom = nom;
     }
 
+
+    @OneToMany(mappedBy="user",cascade={CascadeType.REMOVE},fetch = FetchType.EAGER)
+    private List<avis> avisList;
 }

@@ -147,11 +147,11 @@ public class projet {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE},fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
     private List<Proposition> listepropo ;
 
     @JsonIgnore
-    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE},fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
     private List<reclamation_projet> reclamation_projets ;
     @JsonIgnore
     @OneToMany(mappedBy="projet",cascade={CascadeType.ALL},fetch = FetchType.EAGER)

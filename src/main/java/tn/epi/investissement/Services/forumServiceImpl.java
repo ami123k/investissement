@@ -3,14 +3,14 @@ package tn.epi.investissement.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.epi.investissement.Entites.forum;
-import tn.epi.investissement.Repository.forumRepository;
+import tn.epi.investissement.repository.forumRepository;
 
 import java.util.List;
 
 @Service
 public class forumServiceImpl implements forumService{
     @Autowired
-    tn.epi.investissement.Repository.forumRepository forumRepository ;
+    tn.epi.investissement.repository.forumRepository forumRepository ;
 
 
     @Override

@@ -14,4 +14,7 @@ public interface proposotionService {
     public Proposition AddProposition(Proposition p );
     public Proposition UpdatePropsitionPreConfirm(Long Id_prop);
     public Proposition UpdatePropostionConfirm(Long Id_prop);
+    public List<Proposition> findallnonconfirm();
+    public List<Proposition> findallconfirm();
+    public List<Proposition> findallpreconfirm();
 }

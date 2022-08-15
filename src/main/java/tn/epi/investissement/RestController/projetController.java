@@ -31,10 +31,17 @@ public class projetController {
 
         return projetService.AddProjetNonConfirm(p);
     }
+    @PutMapping("UpdatestatusProject/{id_projet}")
+    @ResponseBody
+    public projet Updatestatusprojet(@PathVariable("id_projet" )Long id_projet) {
+
+        return projetService.UpdateStatusProjet(id_projet);
+    }
     @PutMapping("UpdateProject/{id_projet}")
     @ResponseBody
-    public projet UpdateAvis(@PathVariable("id_projet" )Long id_projet) {
-        return projetService.UpdateStatusProjet(id_projet);
+    public projet Updateprojet(@PathVariable("id_projet" )Long id_projet) {
+
+        return projetService.UpdateProjet(id_projet);
     }
     @DeleteMapping("/DeleteProject/{id_projet}")
     @ResponseBody

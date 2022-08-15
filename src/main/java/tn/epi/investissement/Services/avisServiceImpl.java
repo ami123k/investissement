@@ -3,7 +3,7 @@ package tn.epi.investissement.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.epi.investissement.Entites.avis;
-import tn.epi.investissement.Repository.avisRepository;
+import tn.epi.investissement.repository.avisRepository;
 
 import java.util.List;
 

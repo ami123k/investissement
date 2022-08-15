@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.epi.investissement.Entites.Proposition;
 import tn.epi.investissement.Entites.status_proposition;
-import tn.epi.investissement.Repository.propositionRepository;
+import tn.epi.investissement.repository.propositionRepository;
 
 import java.util.List;
 @Service
@@ -56,4 +56,17 @@ public class propositionServiceImpl implements proposotionService {
 
         return propositionRpository.findById(Id_Propostion).get();
     }
+    @Override
+    public List<Proposition> findallnonconfirm() {
+        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.NonConfirme);
+    }
+    @Override
+    public List<Proposition> findallconfirm() {
+        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.confirme);
+    }
+    @Override
+    public List<Proposition> findallpreconfirm() {
+        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.preconfirme);
+    }
+
 }

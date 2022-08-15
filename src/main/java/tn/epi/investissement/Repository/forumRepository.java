@@ -1,4 +1,4 @@
-package tn.epi.investissement.Repository;
+package tn.epi.investissement.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

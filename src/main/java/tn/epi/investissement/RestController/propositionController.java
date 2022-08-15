@@ -18,6 +18,21 @@ proposotionService proposotionService;
     public List<Proposition> GetAllProposition(){
         return proposotionService.RetriveAll();
     }
+    @GetMapping("/GetAllPropositionNonconfirm")
+    @ResponseBody
+    public List<Proposition> GetAllPropositionNonconfirm(){
+        return proposotionService.findallnonconfirm();
+    }
+    @GetMapping("/GetAllPropositionconfirm")
+    @ResponseBody
+    public List<Proposition> GetAllPropositionconfirm(){
+        return proposotionService.findallconfirm();
+    }
+    @GetMapping("/GetAllPropositionpreconfirm")
+    @ResponseBody
+    public List<Proposition> GetAllPropositionpreconfirm(){
+        return proposotionService.findallpreconfirm();
+    }
     @GetMapping("/GetOneProposition/{Id_proposition}")
     @ResponseBody
     public Proposition GetOneProposition(@PathVariable("Id_proposition") Long Id_Proposition) {

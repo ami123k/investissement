@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Proposition {
@@ -15,6 +16,7 @@ public class Proposition {
    private Long Id_Proposition;
     private String Description ;
     private double montant;
+    @Enumerated(EnumType.STRING)
     private status_proposition status_propo ;
 
     public Proposition() {
@@ -70,10 +72,37 @@ public class Proposition {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private projet projet ;
-
+    @ManyToOne
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User user ;
     @JsonIgnore
     @OneToMany(mappedBy="proposition",cascade={CascadeType.ALL})
     private List<commentaire_proposition> commentaire_propositionList=new ArrayList<>() ;
+
+    public tn.epi.investissement.Entites.projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(tn.epi.investissement.Entites.projet projet) {
+        this.projet = projet;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Proposition(String description, double montant, status_proposition status_propo, tn.epi.investissement.Entites.projet projet, User user) {
+        Description = description;
+        this.montant = montant;
+        this.status_propo = status_propo;
+        this.projet = projet;
+        this.user = user;
+    }
 
 
 }

@@ -7,6 +7,7 @@ import tn.epi.investissement.Entites.projet;
 import tn.epi.investissement.Services.projetService;
 
 import java.util.List;
+@CrossOrigin(origins = "*", maxAge = 3600)
 
 @RestController
 public class projetController {
@@ -48,4 +49,20 @@ public class projetController {
     public void DeleteProject(@PathVariable("id_projet")Long id_projet){
         projetService.DeleteProjet(id_projet);
     }
+    @GetMapping("/GetAllProjectconfirme")
+    @ResponseBody
+    public List<projet> GetAllProjectconfirme(){
+        return projetService.Findallconfirm();
+    }
+    @GetMapping("/GetAllProjectnonconfirme")
+    @ResponseBody
+    public List<projet> GetAllProjectnonconfirme(){
+        return projetService.Findallnonconfirm();
+    }
+    @GetMapping("/Getmyprojets/{id_user}")
+    @ResponseBody
+    public List<projet> Getmyprojets(@PathVariable("id_user" )long id_user){
+        return projetService.Retrivemyprojects(id_user);
+    }
+
 }

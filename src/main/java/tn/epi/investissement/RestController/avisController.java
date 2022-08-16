@@ -6,6 +6,7 @@ import tn.epi.investissement.Entites.avis;
 import tn.epi.investissement.Services.avisService;
 
 import java.util.List;
+@CrossOrigin(origins = "*", maxAge = 3600)
 
 @RestController
 public class avisController {

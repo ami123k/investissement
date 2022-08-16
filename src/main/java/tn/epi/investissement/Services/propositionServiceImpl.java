@@ -2,6 +2,7 @@ package tn.epi.investissement.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import tn.epi.investissement.Entites.Proposition;
 import tn.epi.investissement.Entites.status_proposition;
 import tn.epi.investissement.repository.propositionRepository;
@@ -68,5 +69,12 @@ public class propositionServiceImpl implements proposotionService {
     public List<Proposition> findallpreconfirm() {
         return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.preconfirme);
     }
-
+    @Override
+    public List<Proposition> findpropobyprojet(Long id) {
+        return propositionRpository.findpropobyprojet(id);
+    }
+    @Override
+    public List<Proposition> findpropobyprojetanduser(Long id_projet,long id_user) {
+        return propositionRpository.findpropobyprojetanduser(id_projet,id_user);
+    }
 }

@@ -1,6 +1,8 @@
 package tn.epi.investissement.Entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,7 +16,10 @@ public class projet {
     private String nom;
     private String predescription ;
     private String description;
-
+    @ManyToOne
+    @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private User user ;
     public String getPredescription() {
         return predescription;
     }
@@ -48,7 +53,8 @@ public class projet {
     }
 
     private String image ;
-    private status_projet status ;
+    @Enumerated(EnumType.STRING)
+    private status_projet status_projet ;
     private double montant_debut ;
     private double montant_fin ;
 
@@ -91,11 +97,11 @@ public class projet {
     }
 
     public status_projet getStatus() {
-        return status;
+        return status_projet;
     }
 
     public void setStatus(status_projet status) {
-        this.status = status;
+        this.status_projet = status;
     }
 
     public double getMontant_debut() {
@@ -119,7 +125,7 @@ public class projet {
         this.nom = nom;
         this.description = description;
         this.image = image;
-        this.status = status;
+        this.status_projet = status;
         this.montant_debut = montant_debut;
         this.montant_fin = montant_fin;
     }
@@ -128,7 +134,7 @@ public class projet {
         this.nom = nom;
         this.description = description;
         this.image = image;
-        this.status = status;
+        this.status_projet = status;
         this.montant_debut = montant_debut;
         this.montant_fin = montant_fin;
     }
@@ -140,7 +146,7 @@ public class projet {
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
-                ", status=" + status +
+                ", status=" + status_projet +
                 ", montant_debut=" + montant_debut +
                 ", montant_fin=" + montant_fin +
                 '}';
@@ -162,7 +168,7 @@ public class projet {
         this.predescription = predescription;
         this.description = description;
         this.image = image;
-        this.status = status;
+        this.status_projet = status;
         this.montant_debut = montant_debut;
         this.montant_fin = montant_fin;
     }
@@ -173,7 +179,7 @@ public class projet {
         this.predescription = predescription;
         this.description = description;
         this.image = image;
-        this.status = status;
+        this.status_projet = status;
         this.montant_debut = montant_debut;
         this.montant_fin = montant_fin;
     }

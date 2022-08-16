@@ -17,6 +17,10 @@ public class projetServiceImpl implements  projetService{
         return (List<projet>) projetRepository.findAll();
     }
     @Override
+    public List<projet> Retrivemyprojects(long id) {
+        return (List<projet>) projetRepository.findprojetsByuser(id);
+    }
+    @Override
     public List<projet> Findallconfirm() {
         return (List<projet>) projetRepository.findprojetBystatus(status_projet.Confirme);
     }

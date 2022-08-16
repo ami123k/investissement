@@ -3,16 +3,27 @@ package tn.epi.investissement.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.epi.investissement.Entites.Proposition;
-import tn.epi.investissement.Entites.projet;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import tn.epi.investissement.Services.proposotionService;
+import tn.epi.investissement.storage.StorageService;
+
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 
 public class propositionController {
 @Autowired
 proposotionService proposotionService;
+    @Autowired
+    UserController UC;
+    @Autowired
+    projetController PC;
+List<String> files = new ArrayList<String>();
 
+@Autowired
+StorageService storageService;
     @GetMapping("/GetAllProposition")
     @ResponseBody
     public List<Proposition> GetAllProposition(){
@@ -53,7 +64,7 @@ proposotionService proposotionService;
         return proposotionService.UpdatePropostionConfirm(id_proposition);
     }
 
-    @PutMapping("UpdatePropositionConfirm/{id_proposition}")
+    @PutMapping("UpdatePropositionpreConfirm/{id_proposition}")
     @ResponseBody
     public Proposition Updatepropositionpreconfirm(@PathVariable("id_proposition" )Long id_proposition) {
         return proposotionService.UpdatePropsitionPreConfirm(id_proposition);
@@ -69,4 +80,27 @@ proposotionService proposotionService;
     public Proposition update(@RequestBody Proposition p ) {
         return proposotionService.Update(p);
     }
-}
+
+    @GetMapping(value = "/listpropbyprojet/{projet_id}" )
+    public List<Proposition> findpropobyprojet( @PathVariable(value = "projet_id") Long id){
+        return  proposotionService.findpropobyprojet(id);
+
+    }
+    @GetMapping(value = "/listpropbyprojetanduser/{projet_id}/{user_id}" )
+    public List<Proposition> findpropobyprojet( @PathVariable(value = "projet_id") Long id, @PathVariable (value = "user_id") long user_id){
+        return  proposotionService.findpropobyprojetanduser(id,user_id);
+
+    }
+
+    @PostMapping("/{user_id}/addproposition/{id_projet}")
+    public void addpropositionA (@PathVariable(value = "user_id") Long id_user, @PathVariable(value = "id_projet") Long id_projet, Proposition e ) {
+
+
+
+            e.setUser(UC.user(id_user));
+            e.setProjet(PC.GetOneProject(id_projet));
+            proposotionService.AddProposition(e);
+
+
+
+    }}

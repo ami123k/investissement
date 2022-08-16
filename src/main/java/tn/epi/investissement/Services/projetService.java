@@ -19,6 +19,7 @@ public interface projetService {
     public projet UpdateProjet(Long Id_Projet);
 
     public List<projet> Findallconfirm();
+    public List<projet> Retrivemyprojects(long id);
 
     public List<projet> Findallnonconfirm();
 }

@@ -10,6 +10,7 @@ import tn.epi.investissement.Entites.forum;
 import tn.epi.investissement.Services.forumService;
 
 import java.util.List;
+@CrossOrigin(origins = "*", maxAge = 3600)
 
 @RestController
 public class forumController {

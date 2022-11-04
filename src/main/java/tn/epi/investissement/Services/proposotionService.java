@@ -14,9 +14,9 @@ public interface proposotionService {
     public Proposition AddProposition(Proposition p );
     public Proposition UpdatePropsitionPreConfirm(Long Id_prop);
     public Proposition UpdatePropostionConfirm(Long Id_prop);
-    public List<Proposition> findallnonconfirm();
-    public List<Proposition> findallconfirm();
-    public List<Proposition> findallpreconfirm();
+    public List<Proposition> findallnonconfirm(long id_user);
+    public List<Proposition> findallconfirm(long id_user);
+    public List<Proposition> findallpreconfirm(long id_user);
     public List<Proposition> findpropobyprojet(Long id);
     public List<Proposition> findpropobyprojetanduser(Long id_projet,long id_user);
 }

@@ -1,6 +1,9 @@
 package tn.epi.investissement.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -16,10 +19,56 @@ public class projet {
     private String nom;
     private String predescription ;
     private String description;
+    @Enumerated(EnumType.STRING)
+    private categorie categories ;
+    @Enumerated(EnumType.STRING)
+    private status_projet status_projet ;
     @ManyToOne
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonBackReference
     @JsonIgnore
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user ;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
+    private List<Proposition> listepropo ;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
+    @JsonBackReference
+    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
+    private List<contrat> listecontrat ;
+    @JsonIgnore
+    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
+    private List<reclamation_projet> reclamation_projets ;
+    @JsonIgnore
+    @OneToMany(mappedBy="projet",cascade={CascadeType.ALL})
+    private List<avis> avisList;
+
+    public categorie getCategories() {
+        return categories;
+    }
+
+    public void setCategories(categorie categories) {
+        this.categories = categories;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public tn.epi.investissement.Entites.status_projet getStatus_projet() {
+        return status_projet;
+    }
+
+    public void setStatus_projet(tn.epi.investissement.Entites.status_projet status_projet) {
+        this.status_projet = status_projet;
+    }
+
     public String getPredescription() {
         return predescription;
     }
@@ -53,8 +102,7 @@ public class projet {
     }
 
     private String image ;
-    @Enumerated(EnumType.STRING)
-    private status_projet status_projet ;
+
     private double montant_debut ;
     private double montant_fin ;
 
@@ -120,24 +168,7 @@ public class projet {
         this.montant_fin = montant_fin;
     }
 
-    public projet(Long id_Projet, String nom, String description, String image, status_projet status, double montant_debut, double montant_fin) {
-        Id_Projet = id_Projet;
-        this.nom = nom;
-        this.description = description;
-        this.image = image;
-        this.status_projet = status;
-        this.montant_debut = montant_debut;
-        this.montant_fin = montant_fin;
-    }
 
-    public projet(String nom, String description, String image, status_projet status, double montant_debut, double montant_fin) {
-        this.nom = nom;
-        this.description = description;
-        this.image = image;
-        this.status_projet = status;
-        this.montant_debut = montant_debut;
-        this.montant_fin = montant_fin;
-    }
 
     @Override
     public String toString() {
@@ -152,34 +183,28 @@ public class projet {
                 '}';
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
-    private List<Proposition> listepropo ;
 
-    @JsonIgnore
-    @OneToMany(mappedBy="projet",cascade={CascadeType.REMOVE})
-    private List<reclamation_projet> reclamation_projets ;
-    @JsonIgnore
-    @OneToMany(mappedBy="projet",cascade={CascadeType.ALL},fetch = FetchType.EAGER)
-    private List<avis> avisList;
-
-    public projet(String nom, String predescription, String description, String image, status_projet status, double montant_debut, double montant_fin) {
-        this.nom = nom;
-        this.predescription = predescription;
-        this.description = description;
-        this.image = image;
-        this.status_projet = status;
-        this.montant_debut = montant_debut;
-        this.montant_fin = montant_fin;
-    }
-
-    public projet(Long id_Projet, String nom, String predescription, String description, String image, status_projet status, double montant_debut, double montant_fin) {
+    public projet(Long id_Projet, String nom, String predescription, String description, categorie categories, tn.epi.investissement.Entites.status_projet status_projet, User user, String image, double montant_debut, double montant_fin) {
         Id_Projet = id_Projet;
         this.nom = nom;
         this.predescription = predescription;
         this.description = description;
+        this.categories = categories;
+        this.status_projet = status_projet;
+        this.user = user;
         this.image = image;
-        this.status_projet = status;
+        this.montant_debut = montant_debut;
+        this.montant_fin = montant_fin;
+    }
+
+    public projet(String nom, String predescription, String description, categorie categories, tn.epi.investissement.Entites.status_projet status_projet, User user, String image, double montant_debut, double montant_fin) {
+        this.nom = nom;
+        this.predescription = predescription;
+        this.description = description;
+        this.categories = categories;
+        this.status_projet = status_projet;
+        this.user = user;
+        this.image = image;
         this.montant_debut = montant_debut;
         this.montant_fin = montant_fin;
     }

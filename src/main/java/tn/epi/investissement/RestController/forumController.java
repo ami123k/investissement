@@ -17,6 +17,9 @@ public class forumController {
     @Autowired
     forumService forumService ;
 
+    public forumController(tn.epi.investissement.Services.forumService forumService) {
+        this.forumService = forumService;
+    }
 
     @GetMapping("/GetAllForum")
     @ResponseBody

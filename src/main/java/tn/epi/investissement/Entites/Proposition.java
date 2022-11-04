@@ -1,10 +1,12 @@
 package tn.epi.investissement.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +20,15 @@ public class Proposition {
     private double montant;
     @Enumerated(EnumType.STRING)
     private status_proposition status_propo ;
+    private LocalDate date;
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public Proposition() {
 
@@ -74,6 +85,7 @@ public class Proposition {
     private projet projet ;
     @ManyToOne
     @JsonIgnore
+    @JsonBackReference
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user ;
     @JsonIgnore
@@ -104,5 +116,13 @@ public class Proposition {
         this.user = user;
     }
 
-
+    public Proposition(Long id_Proposition, String description, double montant, status_proposition status_propo, LocalDate date, tn.epi.investissement.Entites.projet projet, User user) {
+        Id_Proposition = id_Proposition;
+        Description = description;
+        this.montant = montant;
+        this.status_propo = status_propo;
+        this.date = date;
+        this.projet = projet;
+        this.user = user;
+    }
 }

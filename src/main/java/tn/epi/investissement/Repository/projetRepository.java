@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import tn.epi.investissement.Entites.Proposition;
+import tn.epi.investissement.Entites.User;
+
 import tn.epi.investissement.Entites.projet;
 import tn.epi.investissement.Entites.status_projet;
 
@@ -16,5 +18,7 @@ public interface projetRepository extends CrudRepository<projet,Long> {
     public List<projet> findprojetBystatus(status_projet status_projet);
     @Query(value ="SELECT * FROM projet p where p.user_id = ?1" , nativeQuery = true)
     public List<projet> findprojetsByuser(long id_user);
+    @Query(value ="SELECT u.user FROM projet u where u.Id_Projet = ?1" )
+    public User finduserbyprojet(long id_projet);
 
 }

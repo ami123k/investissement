@@ -1,6 +1,9 @@
 package tn.epi.investissement.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -87,12 +90,21 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(mappedBy="user",cascade={CascadeType.REMOVE})
 	private List<Proposition> listepropo ;
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
+	@JsonBackReference
 	@OneToMany(mappedBy="user",cascade={CascadeType.REMOVE})
 	private List<projet> listeprojet ;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
+	@JsonBackReference
+	@OneToMany(mappedBy="user",cascade={CascadeType.REMOVE})
+	private List<contrat> listcontrat ;
 	@Override
 	public String toString() {
 		return "User{" +

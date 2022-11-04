@@ -28,7 +28,7 @@ public class propositionServiceImpl implements proposotionService {
 
     @Override
     public Proposition AddProposition(Proposition p ){
-        p.setStatus_propo(status_proposition.NonConfirme);
+        p.setStatus_propo(status_proposition.nonConfirme);
         return  propositionRpository.save(p);
     }
     @Override
@@ -58,16 +58,16 @@ public class propositionServiceImpl implements proposotionService {
         return propositionRpository.findById(Id_Propostion).get();
     }
     @Override
-    public List<Proposition> findallnonconfirm() {
-        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.NonConfirme);
+    public List<Proposition> findallnonconfirm(long user_id) {
+        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(user_id , status_proposition.nonConfirme);
     }
     @Override
-    public List<Proposition> findallconfirm() {
-        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.confirme);
+    public List<Proposition> findallconfirm(long user_id) {
+        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo( user_id , status_proposition.confirme);
     }
     @Override
-    public List<Proposition> findallpreconfirm() {
-        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(status_proposition.preconfirme);
+    public List<Proposition> findallpreconfirm(long user_id) {
+        return (List<Proposition>) propositionRpository.findPropositionByStatus_propo(user_id,status_proposition.preconfirme);
     }
     @Override
     public List<Proposition> findpropobyprojet(Long id) {

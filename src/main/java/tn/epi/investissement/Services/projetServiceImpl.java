@@ -3,6 +3,8 @@ package tn.epi.investissement.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.epi.investissement.Entites.projet;
+import tn.epi.investissement.Entites.User;
+
 import tn.epi.investissement.Entites.status_projet;
 import tn.epi.investissement.repository.projetRepository;
 
@@ -19,6 +21,10 @@ public class projetServiceImpl implements  projetService{
     @Override
     public List<projet> Retrivemyprojects(long id) {
         return (List<projet>) projetRepository.findprojetsByuser(id);
+    }
+    @Override
+    public User finduserbyprojet(long id) {
+        return  projetRepository.finduserbyprojet(id);
     }
     @Override
     public List<projet> Findallconfirm() {
